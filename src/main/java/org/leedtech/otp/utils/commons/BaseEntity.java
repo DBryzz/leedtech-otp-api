@@ -1,0 +1,72 @@
+package org.leedtech.otp.utils.commons;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.leedtech.otp.config.EntityConfigParams;
+import org.leedtech.otp.entity.UserEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+import java.util.UUID;
+
+@MappedSuperclass
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder(toBuilder = true)
+public abstract class BaseEntity implements Entity {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.UUID)
+    private UUID id;
+
+    @Column(name = "created_on", nullable = false)
+    private LocalDateTime createdOn;
+
+    @Column(name = "updated_on", nullable = false)
+    private LocalDateTime updatedOn;
+
+    @Column(name = "created_by")
+    private UUID createdBy;
+
+    @Column(name = "updated_by")
+    private UUID updatedBy;
+
+    @PrePersist
+    public void prePersist() {
+        LocalDateTime now = LocalDateTime.now();
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+
+        if (createdOn == null) {
+            createdOn = now;
+        }
+        if (createdBy == null) {
+            createdBy = getOwnerId();
+        }
+        updatedOn = now;
+        updatedBy = getOwnerId();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedOn = LocalDateTime.now();
+        updatedBy = getOwnerId();
+    }
+
+
+public UUID getOwnerId() {
+    if( Objects.nonNull(SecurityContextHolder.getContext().getAuthentication())) {
+        var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!principal.toString().equals("anonymousUser")) {
+            return ((UserEntity) principal).id();
+        }
+    }
+    return EntityConfigParams.getAnonymousUserId();
+}
+}

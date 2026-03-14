@@ -1,0 +1,46 @@
+volumes:
+  postgres-data:
+    driver: local
+
+services:
+  leeadtech-otp-api:
+    container_name: leeadtech-otp-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./.env
+    volumes:
+      - .:/build
+#      - /build/target
+    ports:
+      - "${HTTP_PORT}:8081"
+#    stdin_open: true
+#    tty: true
+    depends_on:
+      leeadtech-otp-db:
+        condition: service_healthy
+    networks:
+      - leeadtech-otp-network
+
+  leeadtech-otp-db:
+    container_name: leeadtech-otp-db
+    image: postgres:18-alpine
+    ports:
+      - "5433:5432"
+    env_file:
+      - ./.env
+    volumes:
+      - ./.env:/app/.env
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DATASOURCE_USERNAME}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    networks:
+      - leeadtech-otp-network
+
+networks:
+  leeadtech-otp-network:
+    driver: bridge
