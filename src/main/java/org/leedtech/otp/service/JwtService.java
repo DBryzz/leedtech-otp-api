@@ -79,7 +79,7 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(env.getProperty("ecomie.jwt.secret-key"));
+        byte[] keyBytes = Decoders.BASE64.decode(env.getProperty("leedtech.jwt.secret-key"));
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }

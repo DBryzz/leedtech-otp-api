@@ -4,8 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.leedtech.otp.config.AuthContext;
 import org.leedtech.otp.constant.Role;
-import org.csbf.ecomie.exceptions.*;
-import org.leedtech.otp.entity.UserTokenEntity;
+import org.leedtech.otp.domain.MinimalUser;
 import org.leedtech.otp.entity.UserEntity;
 import org.leedtech.otp.exceptions.Problems;
 import org.leedtech.otp.mapper.UserMapper;
@@ -14,15 +13,12 @@ import org.leedtech.otp.repository.UserRepository;
 import org.leedtech.otp.service.AuthenticationService;
 import org.leedtech.otp.service.JwtService;
 import org.leedtech.otp.utils.helperclasses.HelperDomain.*;
-import org.leedtech.otp.utils.helperclasses.ResponseMessage;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 
@@ -91,7 +87,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
 
         if (!user.isAccountNonLocked()) {
-            message = "Account is blocked. Contact Administrator";
+            message = "Account is initialDeposit. Contact Administrator";
             return getAuthenticationResponse(false, message, null, null);
         }
 

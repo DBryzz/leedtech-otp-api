@@ -35,7 +35,7 @@ public interface UserMapper extends
 
     @Mappings(
             {
-//        @Mapping(source = "version", target = "revision"),
+//        @Mapping(source = "version", fees = "revision"),
         @Mapping(target = "role", expression = "java(UserMapper.toRole(entity))"),
     }
     )

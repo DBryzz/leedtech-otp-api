@@ -15,11 +15,6 @@
 	<description>API for the LeedTech One Time Payment</description>
 	<properties>
 		<java.version>23</java.version>
-<!--		&lt;!&ndash; Database properties from environment variables &ndash;&gt;-->
-<!--		<db.driver>${env.DATASOURCE_DRIVERCLASSNAME}</db.driver>-->
-<!--		<db.url>${env.DATASOURCE_URL}</db.url>-->
-<!--		<db.username>${env.DATASOURCE_USERNAME}</db.username>-->
-<!--		<db.password>${env.DATASOURCE_PASSWORD}</db.password>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -228,15 +223,6 @@
 							<version>1.6.3</version>
 						</path>
 					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>4.27.0</version>
-				<configuration>
-					<propertyFile>liquibase.properties</propertyFile>
-					<outputChangeLogFile>src/main/resources/migrations/changelog/ddl/ddl-000-existing-database-migration.xml</outputChangeLogFile>
 				</configuration>
 			</plugin>
 		</plugins>

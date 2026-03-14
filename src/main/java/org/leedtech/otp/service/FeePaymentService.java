@@ -55,14 +55,15 @@ public class FeePaymentService {
 
         var paymentAmount = payload.paymentAmount();
         float incentiveRate = calculateIncentiveRate(paymentAmount);
-        Double incentiveAmount = paymentAmount.multiply(incentiveRate);
-        Double totalPayment = paymentAmount.add(incentiveAmount);
-
-        BigDecimal currentBalance = getCurrentBalance(studentNumber); // Example method
-        BigDecimal newBalance = currentBalance.subtract(totalPayment);
-        LocalDate nextPaymentDueDate = calculateNextDueDate(paymentDate);
-
-        return new PaymentHistory(studentNumber, paymentAmount, paymentDate, incentiveRate, incentiveAmount, newBalance, nextPaymentDueDate);
+//        Double incentiveAmount = paymentAmount.multiply(incentiveRate);
+//        Double totalPayment = paymentAmount.add(incentiveAmount);
+//
+//        BigDecimal currentBalance = getCurrentBalance(studentNumber); // Example method
+//        BigDecimal newBalance = currentBalance.subtract(totalPayment);
+//        LocalDate nextPaymentDueDate = calculateNextDueDate(paymentDate);
+//
+//        return new PaymentHistory(studentNumber, paymentAmount, paymentDate, incentiveRate, incentiveAmount, newBalance, nextPaymentDueDate);
+        return null;
     }
 
     private float calculateIncentiveRate(Double paymentAmount) {

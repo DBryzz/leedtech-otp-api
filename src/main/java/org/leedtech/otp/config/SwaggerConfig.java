@@ -17,16 +17,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
-//import springfox.documentation.builders.ApiInfoBuilder;
-//import springfox.documentation.builders.PathSelectors;
-//import springfox.documentation.builders.RequestHandlerSelectors;
-//import springfox.documentation.service.ApiInfo;
-//import springfox.documentation.spi.DocumentationType;
-//import springfox.documentation.spring.web.plugins.Docket;
-
 
 /**
- * Leedtech Project.
  *
  * @author DB.Tech
  */

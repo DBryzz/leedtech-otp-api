@@ -40,9 +40,9 @@ public class SecurityConfig {
                 // Allow swagger routes
                 .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs", "/v3/api-docs/**", "/webjars/**").permitAll()
                 // permit all authenticated users
-                .requestMatchers("/api/v1/secure/user/**").hasAnyAuthority(Role.USER.name(), Role.ECOMIEST.name(), Role.COACH.name(), Role.SPONSOR.name(), Role.PRAYER_WARRIOR.name(), Role.ADMIN.name(), Role.SUPER_ADMIN.name(), Role.MISSIONARY.name())
+                .requestMatchers("/api/v1/secure/user/**").hasAnyAuthority(Role.USER.name(), Role.STUDENT.name(), Role.LECTURER.name(), Role.ADMIN.name(), Role.SUPER_ADMIN.name())
                 // permit users with roles, ECOMIEST, ADMIN, SUPER_ADMIN
-                .requestMatchers("/api/v1/secure/ecomiest/**").hasAnyAuthority(Role.ECOMIEST.name(), Role.ADMIN.name(), Role.SUPER_ADMIN.name())
+                .requestMatchers("/api/v1/secure/student/**").hasAnyAuthority(Role.STUDENT.name(), Role.ADMIN.name(), Role.SUPER_ADMIN.name())
                 // Permit only ADMIN, SUPER_ADMIN
                 .requestMatchers("/api/v1/secure/admin/**").hasAnyAuthority(Role.ADMIN.name(), Role.SUPER_ADMIN.name())
                 .anyRequest()

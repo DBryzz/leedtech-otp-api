@@ -22,7 +22,7 @@ public class AcademicLevelEntity extends BaseEntity {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Double fees;
 }
 

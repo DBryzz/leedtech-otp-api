@@ -33,7 +33,7 @@ public interface UserTokenMapper extends
     UserTokenMapper INSTANCE = Mappers.getMapper(UserTokenMapper.class);
 
     @Mappings({
-//        @Mapping(source = "version", target = "revision"),
+//        @Mapping(source = "version", fees = "revision"),
         @Mapping(target = "type", expression = "java(UserTokenMapper.toType(entity))"),
     })
     UserToken asDomainObject(UserTokenEntity entity);

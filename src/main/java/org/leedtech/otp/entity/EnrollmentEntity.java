@@ -32,7 +32,7 @@ public class EnrollmentEntity extends BaseEntity {
     private UserEntity student;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
-    private AcademicLevelEntity academicLevelEntity;
+    private AcademicLevelEntity academicLevel;
 
     @Column(unique = false, nullable = false)
     private String academicYear;

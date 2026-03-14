@@ -1,5 +1,10 @@
 package org.leedtech.otp.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.leedtech.otp.domain.PaymentHistory;
 import org.leedtech.otp.domain.PaymentPayload;
 import org.leedtech.otp.service.FeePaymentService;
@@ -8,17 +13,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
+@Slf4j
 @RestController
-@RequestMapping("/one-time-fee-payment")
+@RequiredArgsConstructor
+@RequestMapping("/api/v1")
+@SecurityRequirement(name = "ApiKey")
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "FeePaymentController", description = "This controller contains endpoints for payment")
 public class FeePaymentController {
 
     private final FeePaymentService feePaymentService;
 
-    public FeePaymentController(FeePaymentService feePaymentService) {
-        this.feePaymentService = feePaymentService;
-    }
-
-    @PostMapping
+    @PostMapping(value = "/secure/student/one-time-fee-payment")
+    @Operation(summary = "Make Payment", description = "Make payment", tags = { "USER", "ADMIN" })
     public ResponseEntity<PaymentHistory> makePayment(@RequestBody PaymentPayload payload) {
         PaymentHistory paymentHistory = feePaymentService.processPayment(payload);
         return ResponseEntity.ok(paymentHistory);
