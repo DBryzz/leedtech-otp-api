@@ -19,7 +19,6 @@ import java.util.Objects;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

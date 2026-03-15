@@ -7,7 +7,6 @@ import org.leedtech.otp.utils.commons.Domain;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

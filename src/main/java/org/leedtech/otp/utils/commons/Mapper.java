@@ -20,7 +20,6 @@ import java.util.concurrent.CompletionException;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

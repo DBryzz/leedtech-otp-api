@@ -3,7 +3,6 @@ package org.leedtech.otp.exceptions;
 import java.io.Serial;
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

@@ -26,14 +26,11 @@ public interface EnrollmentMapper extends
     EnrollmentMapper INSTANCE = Mappers.getMapper(EnrollmentMapper.class);
 
     @Mappings({
-//        @Mapping(source = "version", fees = "revision"),
-//        @Mapping(fees = "fieldName", expression = "java(UserMapper.toFieldName(entity))"),
     })
     Enrollment asDomainObject(EnrollmentEntity entity);
 
     @InheritInverseConfiguration
     @Mappings({
-//        @Mapping(fees = "fieldName", expression = "java(UserMapper.fromFieldName(domainObject))"),
     })
     EnrollmentEntity asEntity(Enrollment domainObject);
 

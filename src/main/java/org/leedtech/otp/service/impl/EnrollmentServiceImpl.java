@@ -8,7 +8,6 @@ import org.leedtech.otp.domain.Enrollment;
 import org.leedtech.otp.domain.PaymentPayload;
 import org.leedtech.otp.entity.AcademicLevelEntity;
 import org.leedtech.otp.entity.EnrollmentEntity;
-import org.leedtech.otp.entity.PaymentHistoryEntity;
 import org.leedtech.otp.exceptions.Problems;
 import org.leedtech.otp.entity.UserEntity;
 import org.leedtech.otp.mapper.EnrollmentMapper;
@@ -16,7 +15,6 @@ import org.leedtech.otp.repository.AcademicLevelRepository;
 import org.leedtech.otp.repository.EnrollmentRepository;
 import org.leedtech.otp.repository.UserRepository;
 import org.leedtech.otp.service.EnrollmentService;
-import org.leedtech.otp.service.FeePaymentService;
 import org.leedtech.otp.utils.helperclasses.HelperDomain.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
@@ -38,7 +36,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     private final EnrollmentRepository enrollmentRepo;
     private final AcademicLevelRepository academicLevelRepo;
-    private final FeePaymentService paymentService;
+    private final FeePaymentServiceImpl paymentService;
     private final UserRepository userRepo;
     private final AuthContext authContext;
     private final EnrollmentMapper mapper;

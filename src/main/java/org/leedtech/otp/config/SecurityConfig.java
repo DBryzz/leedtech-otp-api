@@ -15,7 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

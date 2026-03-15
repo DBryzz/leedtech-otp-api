@@ -3,8 +3,8 @@ package org.leedtech.otp.mapper;
 
 import org.apache.commons.lang3.EnumUtils;
 import org.leedtech.otp.constant.Role;
+import org.leedtech.otp.domain.User;
 import org.leedtech.otp.exceptions.Problems;
-import org.leedtech.otp.utils.helperclasses.HelperDomain.User;
 import org.leedtech.otp.entity.UserEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */
@@ -24,9 +23,7 @@ import java.util.Objects;
         componentModel = "spring",
         imports = {
         Objects.class,
-//        ImportedObject.class
 }, uses = {
-//        ImportedMapper.class
 
 })
 public interface UserMapper extends

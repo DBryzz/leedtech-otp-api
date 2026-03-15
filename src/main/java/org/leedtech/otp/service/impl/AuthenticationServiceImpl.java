@@ -23,7 +23,6 @@ import java.util.Objects;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */
@@ -45,10 +44,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         String msg = "user already exist";
         if (userRepo.findByEmail(request.email()).isPresent())
             throw Problems.UNIQUE_CONSTRAINT_VIOLATION_ERROR.withProblemError("RegisterRequest.email", "Email (%s) already in use".formatted(request.email())).toException();
-
-//        String appUrl = servletRequest.getContextPath();
-//        String roles = Role.USER.name()+"-"+Role.ADMIN.name();
-//        String roles = Role.USER.name();
 
         var user = UserEntity.builder()
                 .firstName(request.firstName())

@@ -14,7 +14,6 @@ import org.mapstruct.factory.Mappers;
 import java.util.List;
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */
@@ -30,29 +29,16 @@ public interface PaymentHistoryMapper extends
     PaymentHistoryMapper INSTANCE = Mappers.getMapper(PaymentHistoryMapper.class);
 
     @Mappings({
-//        @Mapping(source = "version", fees = "revision"),
-//        @Mapping(fees = "fieldName", expression = "java(UserMapper.toFieldName(entity))"),
     })
     PaymentHistory asDomainObject(PaymentHistoryEntity entity);
 
     @InheritInverseConfiguration
     @Mappings({
-//        @Mapping(fees = "fieldName", expression = "java(UserMapper.fromFieldName(domainObject))"),
     })
     PaymentHistoryEntity asEntity(PaymentHistory domainObject);
 
     List<PaymentHistory> asDomainObjects(List<PaymentHistoryEntity> entities);
 
     List<PaymentHistoryEntity> asEntities(List<PaymentHistory> domainObjects);
-
-    //    static domainFieldType toFieldName(UserEntity entity) {
-//        logic here
-//        return null;
-//    }
-//
-//    static entityFieldType fromFieldName(User User) {
-//        logic here
-//        return null;
-//    }
 
 }

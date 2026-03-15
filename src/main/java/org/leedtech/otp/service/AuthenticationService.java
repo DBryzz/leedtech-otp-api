@@ -4,7 +4,6 @@ import org.leedtech.otp.utils.helperclasses.HelperDomain.*;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

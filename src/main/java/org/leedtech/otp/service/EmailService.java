@@ -5,7 +5,6 @@ import org.springframework.scheduling.annotation.Async;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

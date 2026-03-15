@@ -11,8 +11,6 @@ import org.leedtech.otp.service.FeePaymentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -22,7 +20,7 @@ import java.time.LocalDate;
 @Tag(name = "FeePaymentController", description = "This controller contains endpoints for payment")
 public class FeePaymentController {
 
-    private final FeePaymentService feePaymentService;
+    FeePaymentService feePaymentService;
 
     @PostMapping(value = "/secure/student/one-time-fee-payment")
     @Operation(summary = "Make Payment", description = "Make payment", tags = { "USER", "ADMIN" })

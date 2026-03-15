@@ -19,7 +19,6 @@ import java.util.function.Function;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

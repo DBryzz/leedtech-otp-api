@@ -8,7 +8,6 @@ import java.util.UUID;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

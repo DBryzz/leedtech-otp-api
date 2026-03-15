@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.EnumUtils;
 import org.leedtech.otp.constant.Role;
+import org.leedtech.otp.domain.User;
 import org.leedtech.otp.exceptions.Problems;
 import org.leedtech.otp.mapper.UserMapper;
 import org.leedtech.otp.entity.UserEntity;

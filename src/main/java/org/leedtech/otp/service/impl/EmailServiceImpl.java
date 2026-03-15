@@ -34,7 +34,6 @@ import java.util.Map;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */
@@ -49,8 +48,6 @@ public class EmailServiceImpl implements EmailService {
     private final UserTokenService tokenService;
     private final Environment env;
     private final HttpServletRequest request;
-//    private final int EMAIL_VERIFICATION_TOKEN_DURATION_IN_MINUTES = Integer.parseInt(Objects.requireNonNull(env.getProperty("email-verification.token.duration")));
-//    private final int PASSWORD_RESET_TOKEN_DURATION_IN_MINUTES = Integer.parseInt(Objects.requireNonNull(env.getProperty("password-reset.token.duration")));
     private static final String REGISTRATION_TEMPLATE = "src/main/resources/templates/registration-template.hbs";
     private static final String PASSWORD_RESET_TEMPLATE = "src/main/resources/templates/password-reset-template.hbs";
 

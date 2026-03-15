@@ -53,7 +53,7 @@ public class PaymentHistoryEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private EnrollmentEntity enrollment;
 
-    private boolean isComplete() {
-        return enrollment.getFees().equals(newBalance);
+    public boolean isInGoodStanding() {
+        return this.getNewBalance() <= 0;
     }
 }

@@ -21,7 +21,6 @@ import javax.validation.constraints.NotBlank;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

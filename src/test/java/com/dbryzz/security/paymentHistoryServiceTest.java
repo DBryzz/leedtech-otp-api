@@ -1,7 +1,7 @@
 package com.dbryzz.security;
 
 import org.junit.jupiter.api.Test;
-import org.leedtech.otp.service.FeePaymentService;
+import org.leedtech.otp.service.impl.FeePaymentServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
@@ -9,13 +9,13 @@ import java.time.LocalDate;
 
 public class paymentHistoryServiceTest {
 
-    private final FeePaymentService service = new FeePaymentService();
+    private final FeePaymentServiceImpl service = new FeePaymentServiceImpl();
 
     @Test
     public void testIncentiveCalculation() {
-        BigDecimal paymentAmount = new BigDecimal("100000");
-        BigDecimal incentiveRate = service.calculateIncentiveRate(paymentAmount);
-        assertEquals(new BigDecimal("0.03"), incentiveRate);
+        Double paymentAmount = Double.parseDouble("100000");
+        float incentiveRate = service.calculateIncentiveRate(paymentAmount);
+        assertEquals(Float.parseFloat("0.03"), incentiveRate);
     }
 
     @Test

@@ -3,14 +3,10 @@ package org.leedtech.otp.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.EnumUtils;
 import org.leedtech.otp.config.AuthContext;
-import org.leedtech.otp.constant.Role;
-import org.leedtech.otp.event.OnRoleChangeRequestEvent;
-import org.leedtech.otp.exceptions.BadRequestException;
+import org.leedtech.otp.domain.User;
 import org.leedtech.otp.service.AuthenticationService;
 import org.leedtech.otp.service.UserService;
 import org.leedtech.otp.utils.helperclasses.HelperDomain.*;
@@ -20,15 +16,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

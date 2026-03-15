@@ -2,7 +2,6 @@ package org.leedtech.otp.constant;
 
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */

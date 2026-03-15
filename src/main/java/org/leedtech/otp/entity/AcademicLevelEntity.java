@@ -6,7 +6,6 @@ import lombok.experimental.SuperBuilder;
 import org.leedtech.otp.utils.commons.BaseEntity;
 
 /**
- * Ecomie Project.
  *
  * @author DB.Tech
  */
