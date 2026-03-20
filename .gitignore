@@ -39,3 +39,34 @@ ENV_SETUP.md
 docker/.env
 nohup.out
 AGENTS.md
+
+
+
+# dependencies
+otp-web/node_modules
+otp-web/.pnp
+otp-web.pnp.js
+
+# testing
+otp-web/coverage
+
+# production
+otp-web/build
+otp-web/dist
+
+# misc
+otp-web/.DS_Store
+otp-web/.env.local
+otp-web/.env.development.local
+otp-web/.env.test.local
+otp-web/.env.production.local
+otp-web/.env
+
+otp-web/npm-debug.log*
+otp-web/yarn-debug.log*
+otp-web/yarn-error.log*
+otp-web/AGENTS.md
+otp-web/.idea
+otp-web/.angular
+otp-web/.angular/cache/
+otp-web/tsconfig.tsbuildinfo

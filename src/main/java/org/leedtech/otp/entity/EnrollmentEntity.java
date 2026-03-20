@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.leedtech.otp.utils.commons.BaseEntity;
 
+import java.math.BigDecimal;
+
 
 /**
  *
@@ -23,10 +25,10 @@ import org.leedtech.otp.utils.commons.BaseEntity;
 public class EnrollmentEntity extends BaseEntity {
 
     @Column(nullable = false)
-    private Double fees;
+    private BigDecimal fees;
 
     @Column(nullable = false)
-    private Double initialDeposit;
+    private BigDecimal initialDeposit;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private UserEntity student;

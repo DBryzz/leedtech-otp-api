@@ -2,6 +2,7 @@ package org.leedtech.otp.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.leedtech.otp.config.AuthContext;
 import org.leedtech.otp.constant.Role;
 import org.leedtech.otp.domain.MinimalUser;
@@ -20,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Random;
 
 
 /**
@@ -45,14 +47,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (userRepo.findByEmail(request.email()).isPresent())
             throw Problems.UNIQUE_CONSTRAINT_VIOLATION_ERROR.withProblemError("RegisterRequest.email", "Email (%s) already in use".formatted(request.email())).toException();
 
+        var studentNum = generateStudentNumber();
         var user = UserEntity.builder()
                 .firstName(request.firstName())
                 .lastName(request.lastName())
                 .email(request.email())
+                .studentNumber(studentNum)
                 .password(passwordEncoder.encode(request.password()))
-                .role(Role.USER)
+                .role(Role.STUDENT)
                 .accountBlocked(false)
-                .accountEnabled(false)
+                .accountEnabled(true)
                 .accountSoftDeleted(false)
                 .build();
         if(authContext.isAuthorized(Role.ADMIN)) {
@@ -65,6 +69,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         msg = "user created";
         return getAuthenticationResponse(true, msg, jwtToken, user);
+    }
+
+    private static @NotNull String generateStudentNumber() {
+        Random r = new Random();
+        int max=999, min=100;
+        var random3Digits = r.nextInt(max - min + 1) + min;
+
+        char[] options = {'A', 'B', 'P'};
+        var randomIndex = r.nextInt(options.length);
+        char studentBatch = options[randomIndex];
+
+        return "LT26" + studentBatch + random3Digits;
     }
 
     @Override

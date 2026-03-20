@@ -11,8 +11,14 @@ import org.leedtech.otp.repository.PaymentHistoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
 
 
 public interface FeePaymentService {
     PaymentHistory processPayment(PaymentPayload payload);
+
+    List<PaymentHistory> getPayments();
+
+    PaymentHistory getPayment(UUID id);
 }

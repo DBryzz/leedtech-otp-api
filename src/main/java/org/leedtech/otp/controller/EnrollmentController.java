@@ -22,32 +22,32 @@ import java.util.UUID;
 @RequestMapping("/api/v1/secure")
 @SecurityRequirement(name = "ApiKey")
 @SecurityRequirement(name = "bearerAuth")
-@Tag(name = "EnrollmentController", description = "This controller contains endpoints for subscriptions")
+@Tag(name = "EnrollmentController", description = "This controller contains endpoints for enrollments")
 public class EnrollmentController {
 
     private final EnrollmentService enrollmentService;
-    @PostMapping(value = "/student/subscriptions")
-    @Operation(summary = "Create Subscriptions", description = "Create new subscription", tags = { "ECOMIEST" })
-    protected ResponseEntity<Enrollment> createSubscription(@RequestBody EnrollmentRequest enrollmentRequest) {
+    @PostMapping(value = "/student/enrollments")
+    @Operation(summary = "Create Enrollments", description = "Create new enrollment", tags = { "STUDENT" })
+    protected ResponseEntity<Enrollment> createEnrollment(@RequestBody EnrollmentRequest enrollmentRequest) {
         return new ResponseEntity<>(enrollmentService.enroll(enrollmentRequest), HttpStatus.CREATED);
     }
 
-    @PostMapping(value = "/admin/subscriptions/user/{userId}")
+    @PostMapping(value = "/admin/enrollments/user/{userId}")
     @Operation(summary = "Subscribe User", description = "Add a user to a academicYear", tags = { "ADMIN" })
     public ResponseEntity<Enrollment> subscribeUser(@PathVariable(name = "userId") UUID userId, @RequestBody EnrollmentRequest enrollmentRequest) {
         return new ResponseEntity<>(enrollmentService.enrollUser(userId, enrollmentRequest), HttpStatus.PARTIAL_CONTENT);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/student/subscriptions/{id}")
-    @Operation(summary = "Get Subscription", description = "Get subscription", tags = { "ECOMIEST", "ADMIN" })
-    public Enrollment getSubscription(@PathVariable(name = "id") UUID id) {
+    @GetMapping(value = "/student/enrollments/{id}")
+    @Operation(summary = "Get Enrollment", description = "Get enrollment", tags = { "STUDENT", "ADMIN" })
+    public Enrollment getEnrollment(@PathVariable(name = "id") UUID id) {
         return enrollmentService.getEnrollment(id);
     }
 
-    @GetMapping(value = "/student/subscriptions")
-    @Operation(summary = "Get Subscriptions", description = "Get all subscriptions", tags = { "ECOMIEST", "ADMIN" })
-    public ResponseEntity<List<Enrollment>> getSubscriptions(@RequestParam("isOngoing") boolean isOngoing) {
+    @GetMapping(value = "/student/enrollments")
+    @Operation(summary = "Get Enrollments", description = "Get all enrollments", tags = { "STUDENT", "ADMIN" })
+    public ResponseEntity<List<Enrollment>> getEnrollments(@RequestParam("isOngoing") boolean isOngoing) {
         return ResponseEntity.ok(enrollmentService.getEnrollments(isOngoing));
     }
 

@@ -68,8 +68,8 @@ public record Problem(@JsonProperty("title") String title, @JsonProperty("detail
         return withProblemErrors(newProblemErrors != null ? Arrays.asList(newProblemErrors) : null);
     }
 
-    public EcomieException toException() {
-        return new EcomieException(
+    public LeedTechException toException() {
+        return new LeedTechException(
                 new Problem(title, detail, statusCode, type, instance, code, problemErrors));
     }
 

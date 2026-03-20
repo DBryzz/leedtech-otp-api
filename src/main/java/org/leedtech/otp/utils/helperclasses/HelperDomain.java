@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.leedtech.otp.domain.MinimalUser;
 import org.leedtech.otp.utils.commons.ExtendedEmailValidator;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -64,7 +65,7 @@ public class HelperDomain {
      * Enrollment Domain
      */
     @Builder
-    public record EnrollmentRequest(Double fees, Double initialDeposit, UUID academicLevelId, String academicYear, LocalDate paymentDate) {
+    public record EnrollmentRequest(BigDecimal fees, BigDecimal initialDeposit, UUID academicLevelId, String academicYear, LocalDate paymentDate) {
     }
 
 

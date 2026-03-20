@@ -17,19 +17,10 @@ public interface Entity extends Persistable<UUID> {
 
     UUID getUpdatedBy();
 
-//    UUID getOwnerId();
-
-//    default Boolean deleted() {
-//        return false;
-//    }
-
     default UUID id() {
         return getId();
     }
 
-//    default Integer version() {
-//        return getVersion();
-//    }
 
     default LocalDateTime createdOn() {
         return getCreatedOn();
@@ -47,7 +38,4 @@ public interface Entity extends Persistable<UUID> {
         return getUpdatedBy();
     }
 
-//    default UUID ownerId() {
-//        return getOwnerId();
-//    }
 }

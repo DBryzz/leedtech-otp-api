@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
+import javax.validation.constraints.DecimalMin;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -13,6 +15,6 @@ import java.time.LocalDate;
 @Builder
 public record PaymentPayload(
         @NotBlank String studentNumber,
-        @Min(value = 1, message = "Amount cannot be less than 1") Double paymentAmount,
+        @DecimalMin(value = "1", message = "Amount cannot be less than 1") BigDecimal paymentAmount,
         LocalDate paymentDate
 ) {}

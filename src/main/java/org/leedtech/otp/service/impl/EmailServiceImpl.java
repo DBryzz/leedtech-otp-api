@@ -127,7 +127,7 @@ public class EmailServiceImpl implements EmailService {
 
         encodedToEmail = URLEncoder.encode(to, StandardCharsets.UTF_8);
         encodedFromEmail = URLEncoder.encode(from, StandardCharsets.UTF_8);
-        String subject = "@ECOMIE - Request To Be " + purpose;
+        String subject = "@STUDENT - Request To Be " + purpose;
         String body = "I will like to become a/an " + purpose + ": \n\n If you approve of this userEntity, click on the link to approve his/her request " + requestHost +  "/api/v1/secure/admin/update-userEntity-role?email="+encodedFromEmail+"&role="+purpose;
         sendEmail(to, subject, body, from);
 
@@ -181,7 +181,6 @@ public class EmailServiceImpl implements EmailService {
         String templateContent;
         try {
             log.info("EmailServiceImpl.processHandleBar - Reading Template");
-            templateContent = Files.readString(Paths.get("src/main/resources/templates/password-reset-template.hbs"));
             templateContent = Files.readString(Paths.get(templatePath));
             log.info("EmailServiceImpl.processHandleBar - Successfully Read Template");
 

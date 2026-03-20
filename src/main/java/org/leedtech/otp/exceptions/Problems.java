@@ -107,8 +107,8 @@ public interface Problems {
 
 
     static <T extends Throwable> Problem fromThrowable(T cause) {
-        if (cause instanceof EcomieException ecomieException) {
-            return ecomieException.getProblem();
+        if (cause instanceof LeedTechException leedTechException) {
+            return leedTechException.getProblem();
         } else {
 
 //            if (cause instanceof ReplyException replyException) {
@@ -126,7 +126,7 @@ public interface Problems {
 
     }
 
-    static EcomieException toThrowable(Problem problem) {
-        return new EcomieException(Objects.requireNonNullElse(problem, INTERNAL_SERVER_ERROR));
+    static LeedTechException toThrowable(Problem problem) {
+        return new LeedTechException(Objects.requireNonNullElse(problem, INTERNAL_SERVER_ERROR));
     }
 }

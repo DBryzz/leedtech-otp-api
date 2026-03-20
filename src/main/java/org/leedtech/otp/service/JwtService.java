@@ -50,7 +50,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * Long.parseLong(Objects.requireNonNull(env.getProperty("ecomie.jwt.access-token.duration.days"))))) // Expires after 30days
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * Long.parseLong(Objects.requireNonNull(env.getProperty("leedtech.jwt.access-token.duration.days"))))) // Expires after 30days
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

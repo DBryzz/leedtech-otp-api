@@ -13,7 +13,7 @@ import java.util.UUID;
  * @author DB.Tech
  */
 @Builder
-public record User(UUID id, String firstName, String lastName, String email, String role, String phoneNumber,
+public record User(UUID id, String firstName, String lastName, String email, String studentNumber, String role, String phoneNumber,
                    String country, String region, String city, String language,
                    String profilePictureFileName, Boolean accountEnabled, Boolean accountBlocked,
                    Boolean accountSoftDeleted, LocalDateTime createdOn, LocalDateTime updatedOn, UUID createdBy, UUID updatedBy) implements Domain {
@@ -36,7 +36,7 @@ public record User(UUID id, String firstName, String lastName, String email, Str
 
 
     public User justMinimal() {
-        return new User(id, firstName, lastName, email, role, phoneNumber, country, region, city, language,
+        return new User(id, firstName, lastName, email, studentNumber, role, phoneNumber, country, region, city, language,
                 profilePictureFileName, null, null, null,
                 createdOn, updatedOn, createdBy, updatedBy);
     }

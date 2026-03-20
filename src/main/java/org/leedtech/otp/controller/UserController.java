@@ -51,8 +51,8 @@ public class UserController {
     public ResponseMessage<User> enableUser(@PathVariable(name = "id") UUID id) { return userService.enableUser(id); }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/admin/users/{id}")
-    @Operation(summary = "Get User Profile", description = "Get user's profile information using userId", tags = { "ADMIN" })
+    @GetMapping(value = "/student/users/{id}")
+    @Operation(summary = "Get User Profile", description = "Get user's profile information using userId", tags = { "STUDENT", "ADMIN" })
     public User getUserProfile(@PathVariable(name = "id") UUID id) { return userService.getUserProfile(id); }
 
 

@@ -35,7 +35,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
 
     @Bean
-    public GroupedOpenApi ecomie() {
+    public GroupedOpenApi leedtech() {
         return GroupedOpenApi.builder()
                 .group("LEEDTECH")
                 .packagesToScan("org.leedtech.otp")
@@ -43,7 +43,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public OpenAPI ecomieAPI() {
+    public OpenAPI leedtechAPI() {
         return new OpenAPI()
 
                 .info(new Info()

@@ -22,16 +22,7 @@ public class OnRegistrationCompleteEventListener implements ApplicationListener<
             this.confirmRegistration(event);
         }
 
-        @Async
-        public void confirmRegistration(OnRegistrationCompleteEvent event) {
-            RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-            String host;
-            if (requestAttributes != null) {
-                log.info("Request attributes found {}", requestAttributes.getAttribute("javax.servlet.request.attributes", RequestAttributes.SCOPE_REQUEST));
-                host = (String) requestAttributes.getAttribute("host", RequestAttributes.SCOPE_REQUEST);
-            } else {
-                host = event.getEmail();
-            }
-            service.sendEmailVerificationToken(host, event.getEmail());
+        private void confirmRegistration(OnRegistrationCompleteEvent event) {
+            service.sendEmailVerificationToken(event.getRequestHeaderHost(), event.getEmail());
         }
 }

@@ -5,6 +5,8 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.leedtech.otp.utils.commons.BaseEntity;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author DB.Tech
@@ -22,6 +24,6 @@ public class AcademicLevelEntity extends BaseEntity {
     private String name;
 
     @Column(nullable = false)
-    private Double fees;
+    private BigDecimal fees;
 }
 

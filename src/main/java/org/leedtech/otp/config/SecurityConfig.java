@@ -35,12 +35,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                 // Allow access to unauthenticated users
-                .requestMatchers("/api/v1/auth/**", "/api/v1/users/**", "/api/v1/sessions/**", "/api/v1/challenges/**", "/api/v1/subscriptions/**", "/api/v1/reports/**","/api/v1/demo-controller**").permitAll()
+                .requestMatchers("/api/v1/auth/**", "/api/v1/users/**", "/api/v1/sessions/**", "/api/v1/academic-levels/**", "/api/v1/enrollments/**", "/api/v1/payments/**").permitAll()
                 // Allow swagger routes
                 .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/swagger-resources/**", "/v2/api-docs", "/v3/api-docs/**", "/webjars/**").permitAll()
                 // permit all authenticated users
                 .requestMatchers("/api/v1/secure/user/**").hasAnyAuthority(Role.USER.name(), Role.STUDENT.name(), Role.LECTURER.name(), Role.ADMIN.name(), Role.SUPER_ADMIN.name())
-                // permit users with roles, ECOMIEST, ADMIN, SUPER_ADMIN
+                // permit users with roles, STUDENT, ADMIN, SUPER_ADMIN
                 .requestMatchers("/api/v1/secure/student/**").hasAnyAuthority(Role.STUDENT.name(), Role.ADMIN.name(), Role.SUPER_ADMIN.name())
                 // Permit only ADMIN, SUPER_ADMIN
                 .requestMatchers("/api/v1/secure/admin/**").hasAnyAuthority(Role.ADMIN.name(), Role.SUPER_ADMIN.name())

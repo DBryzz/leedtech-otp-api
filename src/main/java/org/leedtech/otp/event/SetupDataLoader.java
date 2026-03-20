@@ -32,7 +32,6 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
                     .lastName(env.getProperty("super.admin.last-name"))
                     .phoneNumber(env.getProperty("super.admin.phone-number"))
                     .password(passwordEncoder.encode(env.getProperty("super.admin.password")))
-//                    .roles(Role.SUPER_ADMIN.name()+"-"+Role.ADMIN.name()+"-"+Role.ECOMIEST.name()+"-"+Role.MISSIONARY.name()+"-"+Role.PRAYER_WARRIOR.name()+"-"+Role.SPONSOR.name()+"-"+Role.USER.name())
                     .role(Role.SUPER_ADMIN)
                     .country(env.getProperty("super.admin.country"))
                     .region(env.getProperty("super.admin.region"))

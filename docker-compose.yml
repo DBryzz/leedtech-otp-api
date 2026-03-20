@@ -3,8 +3,8 @@ volumes:
     driver: local
 
 services:
-  leeadtech-otp-api:
-    container_name: leeadtech-otp-api
+  leedtech-otp-api:
+    container_name: leedtech-otp-api
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -18,13 +18,13 @@ services:
 #    stdin_open: true
 #    tty: true
     depends_on:
-      leeadtech-otp-db:
+      leedtech-otp-db:
         condition: service_healthy
     networks:
-      - leeadtech-otp-network
+      - leedtech-otp-network
 
-  leeadtech-otp-db:
-    container_name: leeadtech-otp-db
+  leedtech-otp-db:
+    container_name: leedtech-otp-db
     image: postgres:18-alpine
     ports:
       - "5433:5432"
@@ -39,8 +39,8 @@ services:
       timeout: 5s
       retries: 3
     networks:
-      - leeadtech-otp-network
+      - leedtech-otp-network
 
 networks:
-  leeadtech-otp-network:
+  leedtech-otp-network:
     driver: bridge

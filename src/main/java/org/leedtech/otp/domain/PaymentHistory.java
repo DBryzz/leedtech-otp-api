@@ -8,6 +8,7 @@ import org.leedtech.otp.entity.PaymentHistoryEntity;
 import org.leedtech.otp.utils.commons.Domain;
 import org.leedtech.otp.utils.helperclasses.HelperDomain;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -18,26 +19,23 @@ import java.util.UUID;
  */
 @Builder
 public record PaymentHistory(
+        UUID id,
         @NotBlank String studentNumber,
-        @NotNull Double previousAmount,
-        @Min(value = 1, message = "Amount cannot be less than 1") Double paymentAmount,
+        @NotNull BigDecimal previousAmount,
+        @Min(value = 1, message = "Amount cannot be less than 1") BigDecimal paymentAmount,
         @NotNull float incentiveRate,
-        @NotNull Double incentiveAmount,
-        Double newBalance,
+        @NotNull BigDecimal incentiveAmount,
+        BigDecimal newBalance,
         LocalDate paymentDate,
         LocalDate nextPaymentDueDate,
         LocalDateTime createdOn, LocalDateTime updatedOn, UUID createdBy, UUID updatedBy
 ) implements Domain {
 
     public PaymentHistory justMinimal() {
-        return new PaymentHistory(studentNumber, previousAmount, paymentAmount, incentiveRate, incentiveAmount,
+        return new PaymentHistory(id, studentNumber, previousAmount, paymentAmount, incentiveRate, incentiveAmount,
                 newBalance, paymentDate, nextPaymentDueDate, createdOn, updatedOn, createdBy, updatedBy);
     }
 
-    @Override
-    public UUID id() {
-        return null;
-    }
     @Override
     public String name() {
         return "";

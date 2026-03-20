@@ -20,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -96,12 +97,27 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             throw Problems.FORBIDDEN_OPERATION_ERROR.withProblemError("userEntity",
                     "User not an STUDENT").toException();
         }
-//        SessionEntity sessionEntity = sessionRepo.findByStatus(SessionStatus.ONGOING).orElseThrow(() -> Problems.NOT_FOUND.withProblemError("sessionEntity", "No ongoing Session found").toException());
 
         AcademicLevelEntity academicLevelEntity = academicLevelRepo.findById(enrollmentRequest.academicLevelId()).orElseThrow(
                 () -> Problems.NOT_FOUND.withProblemError("academicLevelId",
                         "Academic level with id (%s) does not exist"
                                 .formatted(enrollmentRequest.academicLevelId().toString())).toException());
+
+        enrollmentRepo.findByAcademicLevel_IdAndStudent_Id(academicLevelEntity.getId(), userEntity.getId()).ifPresent(enrollment -> {
+                throw Problems.UNIQUE_CONSTRAINT_VIOLATION_ERROR.withProblemError("academicLevelId",
+                        "Already enrolled to Academic level with id (%s)"
+                                .formatted(enrollmentRequest.academicLevelId().toString())).toException();
+        });
+
+        if (enrollmentRequest.fees().compareTo(academicLevelEntity.getFees()) != 0) {
+            throw Problems.BAD_REQUEST.withProblemError("fees",
+                    "Fees (%s) does not match Academic level fees (%s)"
+                            .formatted(enrollmentRequest.fees().toString(), academicLevelEntity.getFees().toString())).toException();
+        }
+
+        if (enrollmentRequest.initialDeposit().compareTo(BigDecimal.ZERO) <= 0) {
+            throw Problems.INVALID_PARAMETER_ERROR.withProblemError("initialDeposit", "initialDeposit cannot be less than 1").toException();
+        }
 
 
 
@@ -117,11 +133,11 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
         var paymentPayload = PaymentPayload.builder()
                 .paymentAmount(enrollmentRequest.initialDeposit())
-                .studentNumber(userEntity.getEmail())
+                .studentNumber(userEntity.getStudentNumber())
                 .paymentDate(enrollmentRequest.paymentDate())
                 .build();
 
-        var ph = paymentService.processPayment(paymentPayload);
+        var ph = paymentService.processPayment(paymentPayload, enrollment);
 
         return authContext.isAuthorized(Role.ADMIN)
                 ? mapper.asDomainObject(enrollment)

@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -40,6 +41,9 @@ public class AcademicLevelServiceImp implements AcademicLevelService {
     @Override
     @Transactional
     public ResponseMessage<AcademicLevel> store(AcademicLevel academicLevel) {
+        if (academicLevel.fees().intValue() <= 0) {
+            throw Problems.INVALID_PARAMETER_ERROR.withProblemError("fees", "Fees cannot be less than 1").toException();
+        }
 
         academicLevelRepository.findByName(academicLevel.name()).ifPresent(_ -> {
             throw Problems.UNIQUE_CONSTRAINT_VIOLATION_ERROR.withProblemError("academicLevelEntity.name",
@@ -47,6 +51,7 @@ public class AcademicLevelServiceImp implements AcademicLevelService {
         });
         var academicLevelEntity = AcademicLevelEntity.builder()
                 .name(academicLevel.name())
+                .fees(academicLevel.fees())
                 .build();
 
         AcademicLevelEntity savedAcademicLevel = academicLevelRepository.save(academicLevelEntity);
@@ -58,6 +63,9 @@ public class AcademicLevelServiceImp implements AcademicLevelService {
     @Override
     @Transactional
     public ResponseMessage<AcademicLevel> update(UUID challengeId, AcademicLevel academicLevel) {
+        if (academicLevel.fees().compareTo(BigDecimal.valueOf(0)) <= 0) {
+            throw Problems.INVALID_PARAMETER_ERROR.withProblemError("fees", "Fees cannot be less than 1").toException();
+        }
         var academicLevelEntity = academicLevelRepository.findById(challengeId).orElseThrow(
                 () -> Problems.NOT_FOUND.withProblemError("AcademicLevel",
                         "Academic Level with id (%s) not found".formatted(challengeId.toString())).toException());
@@ -68,9 +76,6 @@ public class AcademicLevelServiceImp implements AcademicLevelService {
                         "AcademicLevel with the name (%s) already exist".formatted(chal.getName())).toException();
             });
         }
-
-
-
 
         var oldAcademicLevel = mapper.asDomainObject(academicLevelEntity);
         var oldJsonAcademicLevel = Mapper.toJsonObject(oldAcademicLevel);

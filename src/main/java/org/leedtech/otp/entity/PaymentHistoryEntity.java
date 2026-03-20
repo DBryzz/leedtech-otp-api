@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.leedtech.otp.utils.commons.BaseEntity;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 
@@ -25,20 +26,22 @@ import java.time.LocalDate;
 public class PaymentHistoryEntity extends BaseEntity {
 
 //    Payment amount,
-    Double paymentAmount;
+    BigDecimal paymentAmount;
 
 //    Incentive rate,
     float incentiveRate;
 
 //    Incentive amount,
-    Double incentiveAmount;
+    BigDecimal incentiveAmount;
 
 //    Total payment amount,
-    Double totalPaymentAmount;
+    BigDecimal totalPaymentAmount;
 
 //    Previous balance,
-//    New balance,
-    Double newBalance;
+    BigDecimal previousAmount;
+
+    //    New balance,
+    BigDecimal newBalance;
 
     LocalDate paymentDate;
 
@@ -54,6 +57,6 @@ public class PaymentHistoryEntity extends BaseEntity {
     private EnrollmentEntity enrollment;
 
     public boolean isInGoodStanding() {
-        return this.getNewBalance() <= 0;
+        return this.getNewBalance().compareTo(BigDecimal.valueOf(0)) <= 0;
     }
 }

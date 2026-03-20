@@ -149,14 +149,7 @@ public interface Mapper<T extends Domain, E extends Entity> {
                 throw new CompletionException(problem.toException());
             }
         });
-//        try {
-//            return asDomainObject(entity);
-//        } catch (Exception ex) {
-//            var problem = new Problem("Mapper failure",
-//                    "An issue occurred while converting from Entity to DomainObject", 500,
-//                    "Internal Server Error", "", "00001011", List.of());
-//            throw  problem.toException();
-//        }
+
     }
 
     default CompletableFuture<E> toEntity(T domainObj) {
@@ -174,14 +167,6 @@ public interface Mapper<T extends Domain, E extends Entity> {
                 throw  new CompletionException(problem.toException());
             }
         });
-//        try {
-//            return asEntity(domainObj);
-//        } catch (Exception ex) {
-//            var problem = new Problem("Mapper failure",
-//                    "An issue occurred while converting from DomainObject to Entity", 500,
-//                    "Internal Server Error", "", "00001011", List.of());
-//            throw  problem.toException();
-//        }
 
     }
 
@@ -201,15 +186,6 @@ public interface Mapper<T extends Domain, E extends Entity> {
             }
     });
 
-//        try {
-//            return asDomainObjects(entities);
-//        } catch (Exception ex) {
-//            // Failures happened should log and return a Future failure
-//            var problem = new Problem("Mapper failure",
-//                    "An issue occurred while converting from Entities to DomainObjects", 500,
-//                    "Internal Server Error", "", "00001012", List.of());
-//            throw problem.toException();
-//        }
     }
 
     default CompletableFuture<List<E>> toEntities(List<T> domainObjs) {
@@ -228,14 +204,6 @@ public interface Mapper<T extends Domain, E extends Entity> {
             }
         });
 
-//        try {
-//            return asEntities(domainObjs);
-//        } catch (Exception ex) {
-//            var problem = new Problem("Mapper failure",
-//                    "An issue occurred while converting from DomainObjects to Entities", 500,
-//                    "Internal Server Error", "", "00001012", List.of());
-//            throw problem.toException();
-//        }
     }
 
     static <O> O withUpdateValuesOnly(JSONObject original, JSONObject update, Class<O> clazz) {

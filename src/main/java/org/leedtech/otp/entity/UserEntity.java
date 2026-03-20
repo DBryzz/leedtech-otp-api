@@ -32,7 +32,7 @@ public class UserEntity extends BaseEntity implements UserDetails {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = true)
     private String studentNumber;
 
     @Column(nullable = false)

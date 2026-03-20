@@ -3,6 +3,7 @@ package org.leedtech.otp.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.leedtech.otp.domain.AcademicLevel;
@@ -36,7 +37,7 @@ public class AcademicLevelController {
     @ResponseStatus(HttpStatus.PARTIAL_CONTENT)
     @PutMapping(value = "/secure/admin/academic-levels/{id}")
     @Operation(summary = "Update Academic Level", description = "Update academic level", tags = { "USER", "ADMIN" })
-    public ResponseMessage<AcademicLevel> updateAcademicLevel(@PathVariable(name = "id") UUID id, @RequestBody AcademicLevel academicLevel) {
+    public ResponseMessage<AcademicLevel> updateAcademicLevel(@PathVariable(name = "id") UUID id, @Valid @RequestBody AcademicLevel academicLevel) {
         return this.academicLevel.update(id, academicLevel);
     }
 

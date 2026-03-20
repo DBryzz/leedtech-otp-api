@@ -48,16 +48,4 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public RequestContextListener requestContextListener() {
-//        return new RequestContextListener();
-//    }
-//
-//    @Bean
-//    public FilterRegistrationBean<RequestContextFilter> requestContextFilter() {
-//        FilterRegistrationBean<RequestContextFilter> registrationBean = new FilterRegistrationBean<>();
-//        registrationBean.setFilter(new RequestContextFilter());
-//        registrationBean.addUrlPatterns("/*"); // Adjust the URL pattern as needed
-//        return registrationBean;
-//    }
 }

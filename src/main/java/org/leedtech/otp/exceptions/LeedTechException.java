@@ -6,34 +6,34 @@ import java.io.Serial;
  *
  * @author DB.Tech
  */
-public class EcomieException extends RuntimeException {
+public class LeedTechException extends RuntimeException {
 
     @Serial
     private static final long serialVersionUID = 6539904016201632067L;
 
     private final Problem problem;
 
-    public EcomieException(Problem problem) {
+    public LeedTechException(Problem problem) {
         this(problem, problem.title());
     }
 
-    public EcomieException(Problem problem, String message) {
+    public LeedTechException(Problem problem, String message) {
         super(message);
         this.problem = problem;
     }
 
-    public EcomieException(Problem problem, String message, Throwable cause) {
+    public LeedTechException(Problem problem, String message, Throwable cause) {
         super(message, cause);
         this.problem = problem;
     }
 
-    public EcomieException(Problem problem, Throwable cause) {
+    public LeedTechException(Problem problem, Throwable cause) {
         super(cause);
         this.problem = problem;
     }
 
-    protected EcomieException(Problem problem, String message, Throwable cause,
-                               boolean enableSuppression, boolean writableStackTrace) {
+    protected LeedTechException(Problem problem, String message, Throwable cause,
+                                boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
         this.problem = problem;
     }
