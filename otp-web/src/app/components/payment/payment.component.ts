@@ -89,7 +89,8 @@ import {isNonNullArray} from "../../lib/utils";
                                             </tr>
                                             <tr>
                                                 <td><strong>Total Payment:</strong></td>
-                                                <td>{{ paymentResult.paymentAmount + paymentResult.incentiveAmount | currency }}</td>
+                                                <td>{{ paymentResult.totalPaymentAmount | currency }}</td>
+<!--                                                <td>{{ paymentResult.paymentAmount + paymentResult.incentiveAmount | currency }}</td>-->
                                             </tr>
                                             <tr>
                                                 <td><strong>Previous Balance:</strong></td>
@@ -101,11 +102,11 @@ import {isNonNullArray} from "../../lib/utils";
                                             </tr>
                                             <tr>
                                                 <td><strong>Payment Date:</strong></td>
-                                                <td>{{ paymentResult.paymentDate | date:'mediumDate' }}</td>
+                                                <td>{{ paymentResult.paymentDate | date:'fullDate' }}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Next Payment Due:</strong></td>
-                                                <td>{{ paymentResult.nextPaymentDueDate | date:'mediumDate' }}</td>
+                                                <td>{{ paymentResult.nextPaymentDueDate | date:'fullDate' }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

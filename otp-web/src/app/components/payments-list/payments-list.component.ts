@@ -39,8 +39,9 @@ import { PaymentHistory } from '../../models/payment.model';
                                         <th>Date</th>
                                         <th>Student #</th>
                                         <th>Payment Amount</th>
-                                        <th>Incentive Rate</th>
+                                        <th>Incentive. Rate</th>
                                         <th>Incentive</th>
+                                        <th>Total Payment Amt</th>
                                         <th>Previous Balance</th>
                                         <th>New Balance</th>
                                         <th>Next Due Date</th>
@@ -48,17 +49,18 @@ import { PaymentHistory } from '../../models/payment.model';
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let payment of payments">
-                                        <td>{{ payment.paymentDate | date:'mediumDate' }}</td>
+                                        <td>{{ payment.paymentDate | date:'fullDate' }}</td>
                                         <td>{{ payment.studentNumber }}</td>
                                         <td>{{ payment.paymentAmount | currency }}</td>
                                         <td>{{ payment.incentiveRate * 100 | number:'1.0-2' }}%</td>
                                         <td>{{ payment.incentiveAmount | currency }}</td>
+                                        <td>{{ payment.totalPaymentAmount | currency }}</td>
                                         <td>{{ payment.previousAmount | currency }}</td>
                                         <td [class.text-success]="payment.newBalance <= 0" 
                                             [class.text-danger]="payment.newBalance > 0">
                                             <strong>{{ payment.newBalance | currency }}</strong>
                                         </td>
-                                        <td>{{ payment.nextPaymentDueDate | date:'mediumDate' }}</td>
+                                        <td>{{ payment.nextPaymentDueDate | date:'fullDate' }}</td>
                                     </tr>
                                 </tbody>
                             </table>

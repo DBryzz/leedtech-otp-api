@@ -92,25 +92,22 @@ public class FeePaymentServiceImpl implements FeePaymentService {
         BigDecimal incentiveAmount = paymentAmount.multiply(BigDecimal.valueOf(incentiveRate));
         BigDecimal totalPayment = paymentAmount.add(incentiveAmount);
 
-        if (!isEnrollment) {
-            if (currentBalance.compareTo(totalPayment) < 0) {
-                incentiveRate = calculateIncentiveRate(paymentAmount);
-                totalPayment = currentBalance;
-                incentiveAmount = totalPayment.subtract(paymentAmount);
-            }
-
-            if (currentBalance.compareTo(paymentAmount) <= 0) {
-                paymentAmount = currentBalance;
-                incentiveRate = calculateIncentiveRate(paymentAmount);
-                incentiveAmount = BigDecimal.valueOf(0);
-                totalPayment = paymentAmount;
-            }
-        }
-
         var newBalance = currentBalance.subtract(totalPayment);
-        if(isEnrollment) {
-            newBalance = currentBalance.subtract(totalPayment);
-        }
+//        If balance <= payment then set newBalance = incentiveAmount = 0 and totalPayment = balance
+            if(currentBalance.compareTo(paymentAmount) <= 0) {
+                newBalance = BigDecimal.valueOf(0);
+                incentiveAmount = BigDecimal.valueOf(0);
+                totalPayment = currentBalance;
+            }
+//        If balance <= incentive+payment then set newBalance=0, incentive=balance-payment and totalPayment=balance
+            else if (currentBalance.compareTo(totalPayment) <= 0) {
+                if(currentBalance.compareTo(totalPayment) < 0) {
+                    incentiveAmount = currentBalance.subtract(paymentAmount);
+                }
+                newBalance = BigDecimal.valueOf(0);
+                totalPayment = currentBalance;
+            }
+
         LocalDate nextPaymentDueDate = calculateNextDueDate(dateToUse);
 
         var phEntity = PaymentHistoryEntity.builder()

@@ -5,6 +5,7 @@ export interface PaymentHistory {
     paymentAmount: number;
     incentiveRate: number;
     incentiveAmount: number;
+    totalPaymentAmount: number;
     newBalance: number;
     paymentDate: string;
     nextPaymentDueDate: string;

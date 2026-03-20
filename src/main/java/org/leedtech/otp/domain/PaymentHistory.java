@@ -25,6 +25,7 @@ public record PaymentHistory(
         @Min(value = 1, message = "Amount cannot be less than 1") BigDecimal paymentAmount,
         @NotNull float incentiveRate,
         @NotNull BigDecimal incentiveAmount,
+        BigDecimal totalPaymentAmount,
         BigDecimal newBalance,
         LocalDate paymentDate,
         LocalDate nextPaymentDueDate,
@@ -33,7 +34,7 @@ public record PaymentHistory(
 
     public PaymentHistory justMinimal() {
         return new PaymentHistory(id, studentNumber, previousAmount, paymentAmount, incentiveRate, incentiveAmount,
-                newBalance, paymentDate, nextPaymentDueDate, createdOn, updatedOn, createdBy, updatedBy);
+                totalPaymentAmount, newBalance, paymentDate, nextPaymentDueDate, createdOn, updatedOn, createdBy, updatedBy);
     }
 
     @Override

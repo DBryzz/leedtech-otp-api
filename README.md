@@ -157,6 +157,9 @@ Copy `.env.example` to `.env` and configure:
 ### Payments
 - **studentNumber is required to make payments**
 - Get your studentNumber from the user profile using `GET /api/v1/secure/student/users/{id}`
+- incentiveAmount, totalAmount and newBalance is gotten as: `incentiveAmount=incentiveRate*paymentAmount`), `totalPayment=paymentAmount+incentiveAmount` and `newBalance=oldBalance-totalPayment`
+- If `currentBalance<=paymentAmount`, then `incentiveAmount=0`, `totalPayment=balance`  and `newBalance=0` 
+- If `balance<=totalPayment` (payment+incentiveAmount) then set `incentive=balance-paymentAmount`,  `totalPayment=balance` and `newBalance=0`
 
 ### Getting User Profile (studentNumber)
 ```http
